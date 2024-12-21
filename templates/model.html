@@ -1,0 +1,79 @@
+<!doctype html>
+{% extends 'base.html'%}
+
+{% block content %}
+<title>Informasi Model Klasifikasi</title>
+
+<div class="model-summary">
+    <h1>Informasi Model Klasifikasi</h1>
+    
+    <section class="data-summary">
+        <h2>Ringkasan Data</h2>
+        <div class="total-records">
+            <strong>Total Catatan:</strong> {{ total_records }}
+        </div>
+
+        <h3>Distribusi Prediksi:</h3>
+        <table border="1">
+            <tr>
+                <th>Kategori Prediksi</th>
+                <th>Jumlah Catatan</th>
+                <th>Persentase</th>
+            </tr>
+            {% for prediction, count in prediction_counts.items() %}
+            <tr>
+                <td>{{ prediction }}</td>
+                <td>{{ count }}</td>
+                <td>{{ "%.2f"|format(count / total_records * 100) }}%</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section class="data-list">
+        <h2>Daftar Data dengan Prediksi</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Prediksi</th>
+                    <th>Net Income to Total Assets</th>
+                    <th>Debt Ratio</th>
+                    <th>Current Ratio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.prediction }}</td>
+                    <td>{{ "%.4f"|format(record.Net_Income_to_Total_Assets) if record.Net_Income_to_Total_Assets is not none else 'N/A' }}</td>
+                    <td>{{ "%.4f"|format(record.Debt_ratio_Percent) if record.Debt_ratio_Percent is not none else 'N/A' }}</td>
+                    <td>{{ "%.4f"|format(record.Current_Ratio) if record.Current_Ratio is not none else 'N/A' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<style>
+    .model-summary section {
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .data-list table {
+        max-height: 300px;
+        overflow-y: auto;
+        display: block;
+    }
+</style>
+{% endblock %}

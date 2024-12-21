@@ -1,0 +1,23 @@
+<!doctype html>
+{% extends 'base.html'%}
+
+{% block content %}
+<title>Input Manual Data</title>
+<h1>Input Manual Data untuk Prediksi</h1>
+<form action="/try-new-data" method="post" class="form-container">
+    {% for feature in feature_columns %}
+    <div class="form-group">
+        <label for="{{ feature }}">{{ feature }}:</label>
+        <input type="number" step="0.01" id="{{ feature }}" name="{{ feature }}" required>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn">Prediksi</button>
+</form>
+
+{% if prediction is not none %}
+<h2>Hasil Prediksi:</h2>
+<p>{{ prediction }}</p>
+{% else %}
+<p>Upload data set untuk prediksi.</p>
+{% endif %}
+{% endblock %}

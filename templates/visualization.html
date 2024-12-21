@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+
+{% block content %}
+    <title>Data Visualization</title>
+
+    <h1>Visualisasi Data</h1>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %}
+        <img src="{{ vis_path }}?t={{ timestamp }}" alt="Prediction Visualization">
+    {% endif %}
+{% endblock %}

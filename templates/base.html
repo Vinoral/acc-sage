@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Map CSS -->
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css">
+  
+  <!-- Libs CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libs.bundle.css') }}">
+  
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.bundle.css') }}">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+  <title>Project Sage</title>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">PT Sage</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" id="navbarLandings" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="navbarPages" href="{{ url_for('model_info') }}">Model</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="navbarAccount" href="{{ url_for('home') }}">Prediction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="navbarDocumentation" href="{{ url_for('try_new_data') }}">Try New Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="navbarVisualization" href="{{ url_for('visualization') }}">Visualization</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Section -->
+  <div class="container my-5">
+    {% block content %}
+    <!-- Content will be inserted here -->
+    {% endblock %}
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  
+  <!-- Vendor JS -->
+  <script src="{{ url_for('static', filename='js/vendor.bundle.js') }}"></script>
+  
+  <!-- Theme JS -->
+  <script src="{{ url_for('static', filename='js/theme.bundle.js') }}"></script>
+
+</body>
+</html>

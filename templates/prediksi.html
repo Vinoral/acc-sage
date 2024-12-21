@@ -1,0 +1,28 @@
+<!doctype html>
+{% extends 'base.html'%}
+
+{% block content %}
+<title>Prediksi dengan Flask</title>
+<h1>Upload Data untuk Prediksi</h1>
+<form action="/" method="post" enctype="multipart/form-data">
+    <label for="file">Upload File CSV:</label>
+    <input type="file" id="file" name="file" accept=".csv">
+    <button type="submit">Upload dan Prediksi</button>
+</form>
+<h2>Hasil Prediksi</h2>
+{% if predictions %}
+<table border="1">
+    <tr>
+        <th>Index</th>
+        <th>Prediction</th>
+    </tr>
+    {% for idx, pred in predictions %}
+    <tr>
+        <td>{{ idx }}</td>
+        <td>{{ pred }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}
